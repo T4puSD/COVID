@@ -1,5 +1,6 @@
 $(document).ready(function(){
-    $(".spinner-container").hide();
+    $("#main-container").hide();
+    // $(".spinner-container").hide();
     // populating the select element
     setCountries();
 
@@ -87,8 +88,8 @@ async function fetchCountryCovidStats(countryname){
                 $("h5#deaths").text(deaths);
                 // $("p#recover-percentage").text(recover_rate.toFixed(2)+"%")
                 // $("p#death-percentage").text(death_rate.toFixed(2)+"%");
-                // $(".loading").hide();
-                // $(".localize").show();
+                $(".spinner-container").hide();
+                $("#main-container").show();
             });
         });
     });
