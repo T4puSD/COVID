@@ -10,8 +10,7 @@ $(document).ready(function(){
     var str = $("select option:selected").val();
     // console.log(str);
     fetchCountryCovidStats(str);
-  })
-  .trigger( "change" );
+  });
 });
 
 //init
@@ -102,6 +101,8 @@ async function fetchCountryCovidStats(countryname){
                 // manipulate html elements
                 htmlDomOperations(jsonData);
             });
+        }).catch(error=>{
+            console.log(error);
         });
     }
     // console.log(countryname);
@@ -112,5 +113,7 @@ async function fetchCountryCovidStats(countryname){
             // html elements 
             htmlDomOperations(jsonData);
         });
+    }).catch(error=>{
+        console.log(error);
     });
 }
