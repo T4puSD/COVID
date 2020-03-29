@@ -9,7 +9,7 @@ $(document).ready(function(){
   .change(function() {
     var str = $("select option:selected").val();
     // console.log(str);
-    fetchCountryCovidStats(str);
+    fetchCovidStats(str);
   });
 });
 
@@ -26,7 +26,7 @@ response.json().then(jsonData => {
     }
     // let country_lang = jsonData.languages.split(',')[0];
     // console.log(countryname.toLowerCase());
-    fetchCountryCovidStats(countryname);
+    fetchCovidStats(countryname);
 });
 })
 .catch(function(error) {
@@ -91,7 +91,7 @@ function htmlDomOperations(jsonData){
      });
 }
 
-async function fetchCountryCovidStats(countryname){
+async function fetchCovidStats(countryname){
     //handling worldwide
     if(countryname == 'worldwide'){
         fetch('https://coronavirus-19-api.herokuapp.com/all')
@@ -105,7 +105,7 @@ async function fetchCountryCovidStats(countryname){
             console.log(error);
         });
     }
-    // console.log(countryname);
+    // handling countries
     fetch(`https://coronavirus-19-api.herokuapp.com/countries/${countryname}`)
     .then(function(response){
         response.json().then(jsonData=>{
