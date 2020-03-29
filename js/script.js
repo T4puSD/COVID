@@ -7,15 +7,14 @@ $(document).ready(function(){
     //handling country select
     $( "select" )
   .change(function() {
-    var str = "";
-    $( "select option:selected" ).each(function() {
-      str += $( this ).text() + " ";
-    });
+    var str = $("select option:selected").val();
     // console.log(str);
     fetchCountryCovidStats(str);
   })
   .trigger( "change" );
 });
+
+//init
 let jsonAllData = null;
 let countryname = "bangladesh";
 fetch('https://ipapi.co/json/')
@@ -65,32 +64,53 @@ async function setCountries(){
     })
 }
 
-// function fetchEachCountry(jsonAllData)
+function htmlDomOperations(jsonData){
+    //  console.log(jsonData.country);
+    let countryname = null;
+    if(jsonData.country){
+        countryname = jsonData.country;
+    } else {
+        countryname = 'World Wide'
+    }
+     let formatter = new Intl.NumberFormat('en-US');
+     let confirmed_cases = formatter.format(jsonData.cases);
+     let recovered = formatter.format(jsonData.recovered);
+     let deaths = formatter.format(jsonData.deaths);
+     // let recover_rate = (jsonData.recovered/jsonData.cases)*100;
+     // let death_rate = (jsonData.deaths/jsonData.cases)*100;
+     // console.log(recover_rate);
+     // console.log(death_rate);
+     $(document).ready(()=>{
+         $("div#card-head-countryname").html(countryname);
+         $("h5#confirmed").text(confirmed_cases);
+         $("h5#recovered").text(recovered);
+         $("h5#deaths").text(deaths);
+         // $("p#recover-percentage").text(recover_rate.toFixed(2)+"%")
+         // $("p#death-percentage").text(death_rate.toFixed(2)+"%");
+         $(".spinner-container").hide();
+         $("#main-container").show();
+     });
+}
 
 async function fetchCountryCovidStats(countryname){
+    //handling worldwide
+    if(countryname == 'worldwide'){
+        fetch('https://coronavirus-19-api.herokuapp.com/all')
+        .then(response=>{
+            response.json().then(jsonData=>{
+                // after getting global json data
+                // manipulate html elements
+                htmlDomOperations(jsonData);
+            });
+        });
+    }
     // console.log(countryname);
     fetch(`https://coronavirus-19-api.herokuapp.com/countries/${countryname}`)
     .then(function(response){
         response.json().then(jsonData=>{
-            // console.log(jsonData);
-            let formatter = new Intl.NumberFormat('en-US');
-            let confirmed_cases = formatter.format(jsonData.cases);
-            let recovered = formatter.format(jsonData.recovered);
-            let deaths = formatter.format(jsonData.deaths);
-            // let recover_rate = (jsonData.recovered/jsonData.cases)*100;
-            // let death_rate = (jsonData.deaths/jsonData.cases)*100;
-            // console.log(recover_rate);
-            // console.log(death_rate);
-            $(document).ready(()=>{
-                $("div#card-head-countryname").html(jsonData.country);
-                $("h5#confirmed").text(confirmed_cases);
-                $("h5#recovered").text(recovered);
-                $("h5#deaths").text(deaths);
-                // $("p#recover-percentage").text(recover_rate.toFixed(2)+"%")
-                // $("p#death-percentage").text(death_rate.toFixed(2)+"%");
-                $(".spinner-container").hide();
-                $("#main-container").show();
-            });
+            // after getting jsonData manipulate
+            // html elements 
+            htmlDomOperations(jsonData);
         });
     });
 }
