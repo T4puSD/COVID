@@ -45,13 +45,12 @@ async function setCountries(){
             jsonData.forEach(data=>{
                 // console.log(data.country);
                 // ! after Fixing country scrapping commit
-                // the country api is assigning one "" as country name
-                // possibly it is returning Diamond Princess as ""
+                // the country api is assigning "" and "Total:" as country name
                 // so to handle it this if condition is added
-                if(data.country !=""){country_name_list.push(data.country);}
+                if(data.country !="" && data.country != "Total:"){country_name_list.push(data.country);}
             });
             country_name_list.sort();
-            console.log(country_name_list);
+            // console.log(country_name_list);
             country_name_list.forEach(name=>{
             //    console.log(name);
                // apending every country name to select
