@@ -48,24 +48,35 @@
         <div id="card-head-countryname" class="card-header">
           countryname
         </div>
+        
+        <!-- Tabs  -->
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a id ="total" class="nav-link active" href="#">Total</a>
+          </li>
+          <li class="nav-item">
+            <a id="today" class="nav-link" href="#">Today</a>
+          </li>
+        </ul>
+
         <div id="card-body"class="card-body">
             <!-- <div class="container-md"> -->
                 <div id="confirmed-card" class="card text-white bg-warning mb-3" style="max-width: 30rem; min-width: 18rem">
-                    <div class="card-header">Confirmed</div>
+                    <div id="title_confirmed" class="card-header">Confirmed</div>
                     <div class="card-body">
                       <h5 id="confirmed" class="card-title"></h5>
                       <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                     </div>
                   </div>
-                <div class="card text-white bg-success mb-3" style="min-width: 18rem; max-width: 30rem;">
-                    <div class="card-header">Recovered</div>
+                <div id="card_recovered" class="card text-white bg-success mb-3" style="min-width: 18rem; max-width: 30rem;">
+                    <div id="title_recovered" class="card-header">Recovered</div>
                     <div class="card-body">
                       <h5 id="recovered" class="card-title"></h5>
                       <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                     </div>
                   </div>
                   <div class="card text-white bg-danger mb-3" style="min-width: 18rem; max-width: 30rem;">
-                    <div class="card-header">Deaths</div>
+                    <div id="title_deaths" class="card-header">Deaths</div>
                     <div class="card-body">
                       <h5 id="deaths" class="card-title"></h5>
                       <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->

@@ -1,3 +1,31 @@
+// Handling The Nav Animation
+$(document).ready(function(){
+    $("li>a").click(function(){
+        // alert("nice");
+        $(this).parent().siblings().find("a").attr("class","nav-link");
+        $(this).attr("class","nav-link active");
+        let choosed = $(this).attr("id");
+        // console.log(choosed);
+        // let countryname = $("div#card-head-countryname").text();
+        // console.log(countryname);
+        // console.log(jsonCurrentCountryData);
+        if(choosed ==="today"){
+            htmlDomOperationsToday(jsonCurrentCountryData);
+        }else {
+            htmlDomOperations(jsonCurrentCountryData);
+        }
+
+    });
+});
+
+function resetActiveNavLink(){
+    $(document).ready(function(){
+        $("ul>li").siblings().find("a").attr("class","nav-link");
+        $("ul>li>a#total").attr("class","nav-link active");
+    });
+}
+
+
 $(document).ready(function(){
     $("#main-container").hide();
     // $(".spinner-container").hide();
@@ -9,12 +37,27 @@ $(document).ready(function(){
   .change(function() {
     var str = $("select option:selected").val();
     // console.log(str);
+
+    // changing active nav link to total
+    resetActiveNavLink();
+
+    //disablling today if selected worldwide
+    // console.log(str);
+    if(str==="worldwide"){
+        // console.log("inside worldwide");
+        $(document).ready(function(){
+            $("ul>li>a#today").attr("class","nav-link disabled");
+
+        });
+    }
+    
+    //fetchingthestats for the selected country
     fetchCovidStats(str);
   });
 });
 
 //init
-let jsonAllData = null;
+let jsonCurrentCountryData = null;
 let countryname = "bangladesh";
 fetch('https://ipapi.co/json/')
 .then(function(response) {
@@ -84,10 +127,50 @@ function htmlDomOperations(jsonData){
      // console.log(recover_rate);
      // console.log(death_rate);
      $(document).ready(()=>{
+         //resetting the card titles
+         $("div#title_confirmed").html("Confirmed");
+         $("div#title_deaths").html("Deaths")
+         $("div#title_recovered").html("Recovered");
+         //resetting recovered_card properties
+         $("div#card_recovered").attr("class","card text-white bg-success mb-3");
+         //changing dom elements
          $("div#card-head-countryname").html(countryname);
          $("h5#confirmed").text(confirmed_cases);
          $("h5#recovered").text(recovered);
          $("h5#deaths").text(deaths);
+         // $("p#recover-percentage").text(recover_rate.toFixed(2)+"%")
+         // $("p#death-percentage").text(death_rate.toFixed(2)+"%");
+         $(".spinner-container").hide();
+         $("#main-container").show();
+     });
+}
+
+function htmlDomOperationsToday(jsonData){
+    let countryname = null;
+    if(jsonData.country){
+        countryname = jsonData.country;
+    } else {
+        countryname = 'World Wide'
+    }
+     let formatter = new Intl.NumberFormat('en-US');
+     let today_cases = formatter.format(jsonData.todayCases);
+     let active_cases = formatter.format(jsonData.active);
+     let today_deaths = formatter.format(jsonData.todayDeaths);
+     // let recover_rate = (jsonData.recovered/jsonData.cases)*100;
+     // let death_rate = (jsonData.deaths/jsonData.cases)*100;
+     // console.log(recover_rate);
+     // console.log(death_rate);
+     $(document).ready(()=>{
+         //changing the titles of the cards
+         $("div#title_confirmed").html("New Cases");
+         $("div#title_deaths").html("New Deaths")
+         $("div#title_recovered").html("Active Cases");
+         //changing the recovered card properties
+         $("div#card_recovered").attr("class","card text-white bg-info mb-3");
+         $("div#card-head-countryname").html(countryname);
+         $("h5#confirmed").text(today_cases);
+         $("h5#recovered").text(active_cases);
+         $("h5#deaths").text(today_deaths);
          // $("p#recover-percentage").text(recover_rate.toFixed(2)+"%")
          // $("p#death-percentage").text(death_rate.toFixed(2)+"%");
          $(".spinner-container").hide();
@@ -115,6 +198,7 @@ async function fetchCovidStats(countryname){
         response.json().then(jsonData=>{
             // after getting jsonData manipulate
             // html elements 
+            jsonCurrentCountryData = jsonData;
             htmlDomOperations(jsonData);
         });
     }).catch(error=>{
