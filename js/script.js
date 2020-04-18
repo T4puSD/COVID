@@ -37,20 +37,9 @@ $(document).ready(function(){
   .change(function() {
     var str = $("select option:selected").val();
     // console.log(str);
-
-    // changing active nav link to total
-    resetActiveNavLink();
-
-    //disablling today if selected worldwide
-    // console.log(str);
-    if(str==="worldwide"){
-        // console.log("inside worldwide");
-        $(document).ready(function(){
-            $("ul>li>a#today").attr("class","nav-link disabled");
-
-        });
-    }
     
+    // changing active nav link to total
+    resetActiveNavLink();    
     //fetchingthestats for the selected country
     fetchCovidStats(str);
   });
@@ -90,7 +79,11 @@ async function setCountries(){
                 // ! after Fixing country scrapping commit
                 // the country api is assigning "" and "Total:" as country name
                 // so to handle it this if condition is added
-                if(data.country !="" && data.country != "Total:"){country_name_list.push(data.country);}
+            if(data.country !="" && data.country != "Total:" && data.country!="World")
+            {
+                country_name_list.push(data.country);
+            }
+
             });
             country_name_list.sort();
             // console.log(country_name_list);
@@ -179,20 +172,8 @@ function htmlDomOperationsToday(jsonData){
 }
 
 async function fetchCovidStats(countryname){
-    //handling worldwide
-    if(countryname == 'worldwide'){
-        fetch('https://coronavirus-19-api.herokuapp.com/all')
-        .then(response=>{
-            response.json().then(jsonData=>{
-                // after getting global json data
-                // manipulate html elements
-                htmlDomOperations(jsonData);
-            });
-        }).catch(error=>{
-            console.log(error);
-        });
-    }
-    // handling countries
+    // no need to handle worldwide as we can fetch it with
+    // countries/World api after new patch
     fetch(`https://coronavirus-19-api.herokuapp.com/countries/${countryname}`)
     .then(function(response){
         response.json().then(jsonData=>{
