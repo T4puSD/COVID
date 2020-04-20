@@ -18,6 +18,7 @@ div#main-container{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
     /* flex-wrap: wrap; */
 }
 .card-body{
@@ -28,6 +29,10 @@ div#main-container{
     align-items: center;
 }
 div#card-head-countryname{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 60px;
+    z-index: 1;
     /* background-color: #757575; */
     /* background-color: #303F9F; */
     background-color: rgb(170, 170, 170);

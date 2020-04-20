@@ -10,7 +10,8 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
+     <!-- plotly cdn from cdnjs  -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.33.1/plotly.min.js" integrity="sha256-6izTmaU3LMinmbxDDcolK51XCh0s0TTREyeZXq335Nc=" crossorigin="anonymous"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161539795-1"></script>
         <script>
@@ -44,7 +45,7 @@
             <option id = "worldwide" value = "World">World Wide</option>
           </select>
     
-      <div class="card text-center">
+      <div id ="sub-container" class="card text-center">
         <div id="card-head-countryname" class="card-header">
           countryname
         </div>
@@ -83,9 +84,15 @@
                     </div>
                   </div>
             </div>
-      </div>
 
+            <div id="dash_plotly">
+              <div id="confirmed_plot"></div>
+              <div id="recovered_plot"></div>
+              <div id="deaths_plot"></div>
+            </div>
+    </div>
     <!-- javascript  -->
     <script src="js/script.js"></script>
+    <script src="js/plotit.js"></script>
 </body>
 </html>
