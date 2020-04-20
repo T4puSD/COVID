@@ -66,31 +66,33 @@
                     <div id="title_confirmed" class="card-header">Confirmed</div>
                     <div class="card-body">
                       <h5 id="confirmed" class="card-title"></h5>
-                      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                     </div>
                   </div>
                 <div id="card_recovered" class="card text-white bg-success mb-3" style="min-width: 18rem; max-width: 30rem;">
                     <div id="title_recovered" class="card-header">Recovered</div>
                     <div class="card-body">
                       <h5 id="recovered" class="card-title"></h5>
-                      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                     </div>
                   </div>
                   <div class="card text-white bg-danger mb-3" style="min-width: 18rem; max-width: 30rem;">
                     <div id="title_deaths" class="card-header">Deaths</div>
                     <div class="card-body">
                       <h5 id="deaths" class="card-title"></h5>
-                      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                     </div>
                   </div>
             </div>
-
-            <div id="dash_plotly">
-              <div id="confirmed_plot"></div>
-              <div id="recovered_plot"></div>
-              <div id="deaths_plot"></div>
-            </div>
-    </div>
+        <!-- history data container  -->
+        <div id ="sub-container2" class="card text-center">
+          <div id="card-head-historydata" class="card-header">
+            History Data
+          </div>
+          <div id="dash_plotly">
+            <div id="confirmed_plot"></div>
+            <div id="recovered_plot"></div>
+            <div id="deaths_plot"></div>
+          </div>
+        </div>
+      </div>
     <!-- javascript  -->
     <script src="js/script.js"></script>
     <script src="js/plotit.js"></script>
