@@ -135,8 +135,8 @@ var confirmed_layout = {
 
           let daily_confirmed_data = [
             {
-            x: x_axis_dates,
-            y: daily_confirmed_y_axis,
+            x: x_axis_dates.slice(1,),
+            y: daily_confirmed_y_axis.slice(1,),
             type: 'bar',
             marker: {color: 'rgb(231, 237, 40)'}
             }
@@ -144,16 +144,16 @@ var confirmed_layout = {
 
         let daily_recovered_data = [
           {
-            x: x_axis_dates,
-            y: daily_recovered_y_axis,
+            x: x_axis_dates.slice(1,),
+            y: daily_recovered_y_axis.slice(1,),
             type: 'bar',
             marker: {color: 'rgb(38, 230, 34)'}
           }
         ];
         let daily_deaths_data = [
           {
-            x: x_axis_dates,
-            y: daily_deaths_y_axis,
+            x: x_axis_dates.slice(1,),
+            y: daily_deaths_y_axis.slice(1,),
             type: 'bar',
             marker: {color: 'rgb(230, 53, 37)'}
           }
