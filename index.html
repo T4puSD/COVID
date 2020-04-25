@@ -86,15 +86,30 @@
           <div id="card-head-historydata" class="card-header">
             History Data
           </div>
-          <div id="dash_plotly">
-            <div id="confirmed_plot"></div>
-            <div id="recovered_plot"></div>
-            <div id="deaths_plot"></div>
+
+          <div id="nav-tabs">
+          <!-- Tabs  -->
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a id ="history-total" class="nav-link active" href="#">Total</a>
+            </li>
+            <li class="nav-item">
+              <a id="history-daily" class="nav-link" href="#">Daily</a>
+            </li>
+          </ul>
           </div>
-          <div id="dash_daily_plotly">
-            <div id="daily_confirmed_plot"></div>
-            <div id="daily_recovered_plot"></div>
-            <div id="daily_deaths_plot"></div>
+
+          <div id="history-container">
+            <div id="dash_plotly">
+              <div id="confirmed_plot"></div>
+              <div id="recovered_plot"></div>
+              <div id="deaths_plot"></div>
+            </div>
+              <div id="dash_daily_plotly">
+                <div id="daily_confirmed_plot"></div>
+                <div id="daily_recovered_plot"></div>
+                <div id="daily_deaths_plot"></div>
+              </div>
           </div>
         </div>
       </div>

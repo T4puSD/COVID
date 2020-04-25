@@ -1,6 +1,9 @@
+
 // Handling The Nav Animation
 $(document).ready(function(){
-    $("li>a").click(function(){
+    $("li>a").click(function(event){
+        // disabling nav links default action
+        event.preventDefault();
         // alert("nice");
         $(this).parent().siblings().find("a").attr("class","nav-link");
         $(this).attr("class","nav-link active");
@@ -9,6 +12,14 @@ $(document).ready(function(){
         // let countryname = $("div#card-head-countryname").text();
         // console.log(countryname);
         // console.log(jsonCurrentCountryData);
+        if(choosed == "history-daily"){
+            $('#dash_daily_plotly').css('z-index',1);
+            $('#dash_plotly').css('z-index',-1);
+
+        } else if(choosed == "history-total"){
+            $('#dash_daily_plotly').css('z-index',-1);
+            $('#dash_plotly').css('z-index',1);
+        }
         if(choosed ==="today"){
             htmlDomOperationsToday(jsonCurrentCountryData);
         }else {

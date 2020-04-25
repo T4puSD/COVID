@@ -32,7 +32,7 @@ div#card-head-countryname{
     position: -webkit-sticky;
     position: sticky;
     top: 60px;
-    z-index: 1;
+    z-index: 2;
     /* background-color: #757575; */
     /* background-color: #303F9F; */
     background-color: rgb(170, 170, 170);
@@ -52,4 +52,10 @@ div#card-body{
 
 select#select-countries{
     margin: 10px;
+}
+
+div#dash_daily_plotly{
+    position: absolute;
+    z-index:-1;
+    top:7%;left:0
 }
