@@ -172,7 +172,7 @@ function htmlDomOperationsToday(jsonData){
 }
 
 async function fetchCovidStats(countryname){
-    dataFetcher(countryname);
+    historyDataFetcher(countryname);
     // no need to handle worldwide as we can fetch it with
     // countries/World api after new patch
     fetch(`https://coronavirus-19-api.herokuapp.com/countries/${countryname}`)
