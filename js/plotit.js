@@ -70,7 +70,7 @@ var confirmed_layout = {
           Plotly.purge('recovered_plot');
           Plotly.purge('deaths_plot');
           if(jsonData){
-          let last30Days = jsonData[countryname].slice(-30,);
+          let last30Days = jsonData[countryname]
           let x_axis_dates = [];
           let confirmed_y_axis = [];
           let recovered_y_axis = [];
@@ -85,14 +85,20 @@ var confirmed_layout = {
           last30Days.forEach(element => {
             // only plotting 30 days data
             // console.log(element);
-              x_axis_dates.push(element.date);
-              confirmed_y_axis.push(element.confirmed);
-              recovered_y_axis.push(element.recovered);
-              deaths_y_axis.push(element.deaths);
+            x_axis_dates.push(element.date);
 
-              daily_confirmed_y_axis.push(element.confirmed - daily_prev_confirm);
-              daily_recovered_y_axis.push(element.recovered - daily_prev_recovered);
-              daily_deaths_y_axis.push(element.deaths - daily_prev_deaths)
+            if(element.confirmed<0) confirmed_y_axis.push(0);
+            else  confirmed_y_axis.push(element.confirmed);
+            
+            if(element.recovered<0) recovered_y_axis.push(0);
+            else recovered_y_axis.push(element.recovered);
+            
+            if(element.deaths<0) deaths_y_axis.push(0);
+            else deaths_y_axis.push(element.deaths);
+
+              daily_confirmed_y_axis.push(Math.abs(element.confirmed - daily_prev_confirm));
+              daily_recovered_y_axis.push(Math.abs(element.recovered - daily_prev_recovered));
+              daily_deaths_y_axis.push(Math.abs(element.deaths - daily_prev_deaths));
 
               daily_prev_confirm = element.confirmed;
               daily_prev_recovered = element.recovered;

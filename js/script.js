@@ -1,4 +1,15 @@
 
+function bringDailyPlotToFront(){
+    $('#dash_daily_plotly').css('z-index',1);
+    $('#dash_plotly').css('z-index',-1);
+}
+
+function bringTotalPlotToFront(){
+    $('#dash_daily_plotly').css('z-index',-1);
+    $('#dash_plotly').css('z-index',1);
+}
+
+
 // Handling The Nav Animation
 $(document).ready(function(){
     $("li>a").click(function(event){
@@ -13,12 +24,10 @@ $(document).ready(function(){
         // console.log(countryname);
         // console.log(jsonCurrentCountryData);
         if(choosed == "history-daily"){
-            $('#dash_daily_plotly').css('z-index',1);
-            $('#dash_plotly').css('z-index',-1);
+            bringDailyPlotToFront();
 
         } else if(choosed == "history-total"){
-            $('#dash_daily_plotly').css('z-index',-1);
-            $('#dash_plotly').css('z-index',1);
+            bringTotalPlotToFront();
         }
         if(choosed ==="today"){
             htmlDomOperationsToday(jsonCurrentCountryData);
@@ -33,6 +42,8 @@ function resetActiveNavLink(){
     $(document).ready(function(){
         $("ul>li").siblings().find("a").attr("class","nav-link");
         $("ul>li>a#total").attr("class","nav-link active");
+        $("ul>li>a#history-total").attr("class","nav-link active");
+        bringTotalPlotToFront();
     });
 }
 
