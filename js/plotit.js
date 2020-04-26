@@ -1,19 +1,21 @@
-let window_height = $("document").width();
+let document_width = $("document").width();
 let window_width = $("#sub-container").width();
-// console.log("width : "+window_width);
-// console.log("width perc: "+window_width*0.2);
+console.log("width : "+window_width);
+console.log("width perc: "+parseInt((window_width*0.2)/3));
 
 var confirmed_layout = {
     title: 'Confirmed Cases',
     autosize:false,
-    height:window_width-(window_height*0.4),
+    height:window_width-(document_width*0.4),
     width:window_width,
     font:{
       family: 'Raleway, sans-serif'
     },
     showlegend: false,
     xaxis: {
-      tickangle: -45
+      tickangle: -60,
+      tickmode: 'auto',
+      nticks: parseInt((window_width*0.2)/8)
     },
     yaxis: {
       zeroline: false,
@@ -22,6 +24,8 @@ var confirmed_layout = {
     bargap :0.05,
     autosize:true
   };
+
+
   // deep coping with spread syntax
   var recovered_layout = {...confirmed_layout};
   recovered_layout.title = "Recovered cases";
@@ -36,15 +40,16 @@ var confirmed_layout = {
   var daily_confirmed_layout = {
     title: 'Daily New Cases',
     autosize:false,
-    height:window_width-(window_height*0.4),
+    height:window_width-(document_width*0.4),
     width:window_width,
     font:{
       family: 'Raleway, sans-serif'
     },
     showlegend: false,
     xaxis: {
-      tickangle: -45,
-      tickmode: 'array'
+      tickangle: -60,
+      tickmode: 'array',
+      nticks: parseInt((window_width*0.2)/8)
     },
     yaxis: {
       title: 'Daily Cases',
@@ -87,6 +92,9 @@ var confirmed_layout = {
               $('#sub-container2').show();
             });
           }
+          console.log(last30Days.length);
+          // Object.assign(confirmed_layout.xaxis,{nticks:(last30Days.length)});
+
           let x_axis_dates = [];
           let confirmed_y_axis = [];
           let recovered_y_axis = [];
