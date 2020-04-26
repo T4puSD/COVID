@@ -1,7 +1,7 @@
 let window_height = $("document").width();
 let window_width = $("#sub-container").width();
-console.log("width : "+window_width);
-console.log("width perc: "+window_width*0.2);
+// console.log("width : "+window_width);
+// console.log("width perc: "+window_width*0.2);
 
 var confirmed_layout = {
     title: 'Confirmed Cases',
@@ -69,8 +69,24 @@ var confirmed_layout = {
           Plotly.purge('confirmed_plot');
           Plotly.purge('recovered_plot');
           Plotly.purge('deaths_plot');
+          Plotly.purge('daily_confirmed_plot');
+          Plotly.purge('daily_recovered_plot');
+          Plotly.purge('daily_deaths_plot');
           if(jsonData){
-          let last30Days = jsonData[countryname]
+          let last30Days = jsonData[countryname];
+          // if country not found in history data
+          // then hide the history container
+          // else show it
+          if(!last30Days){
+            $(document).ready(function(){
+              $('#sub-container2').hide();
+            });
+            return;
+          } else {
+            $(document).ready(function(){
+              $('#sub-container2').show();
+            });
+          }
           let x_axis_dates = [];
           let confirmed_y_axis = [];
           let recovered_y_axis = [];
