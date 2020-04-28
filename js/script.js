@@ -9,32 +9,40 @@ function bringTotalPlotToFront(){
     $('#dash_plotly').css('z-index',1);
 }
 
+function handleNavLinks(thisPointer){
+    thisPointer.parent().siblings().find("a").attr("class","nav-link");
+    thisPointer.attr("class","nav-link active");
+    let choosed = thisPointer.attr("id");
+    return choosed;
+}
+
 
 // Handling The Nav Animation
-$(document).ready(function(){
-    $("li>a").click(function(event){
+$(document).ready(function(){   
+
+    $("ul#overview-nav>li>a").click(function(event){
         // disabling nav links default action
         event.preventDefault();
-        // alert("nice");
-        $(this).parent().siblings().find("a").attr("class","nav-link");
-        $(this).attr("class","nav-link active");
-        let choosed = $(this).attr("id");
-        // console.log(choosed);
-        // let countryname = $("div#card-head-countryname").text();
-        // console.log(countryname);
-        // console.log(jsonCurrentCountryData);
-        if(choosed == "history-daily"){
-            bringDailyPlotToFront();
 
-        } else if(choosed == "history-total"){
-            bringTotalPlotToFront();
-        }
+        let choosed = handleNavLinks($(this));
         if(choosed ==="today"){
             htmlDomOperationsToday(jsonCurrentCountryData);
         }else {
             htmlDomOperations(jsonCurrentCountryData);
         }
 
+    });
+
+    // handling history nav links
+    $("ul#history-nav>li>a").click(function(event){
+        event.preventDefault();
+        let choosed = handleNavLinks($(this));
+        if(choosed == "history-daily"){
+            bringDailyPlotToFront();
+
+        } else if(choosed == "history-total"){
+            bringTotalPlotToFront();
+        }
     });
 });
 
