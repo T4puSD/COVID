@@ -65,6 +65,17 @@ var confirmed_layout = {
   var daily_deaths_layout = {...daily_confirmed_layout}
   daily_deaths_layout.title = " Daily Deaths";
 
+
+  // country name iso to full mapping
+  let country_name_map = {
+    USA : 'US',
+    UAE : 'United Arab Emirates',
+    UK : 'United Kingdom',
+    CAR : 'Central African Republic',
+    'S. Korea' : 'Korea, South',
+    'St. Vincent Grenadines' : 'Saint Vincent Grenadines'
+  }
+
   // let countryname = "Bangladesh";
   async function historyDataFetcher(countryname){ fetch("https://pomber.github.io/covid19/timeseries.json")
   .then(data=>{
@@ -78,6 +89,16 @@ var confirmed_layout = {
           Plotly.purge('daily_recovered_plot');
           Plotly.purge('daily_deaths_plot');
           if(jsonData){
+          // finding odd countries with spaces
+          let country_names = []
+          for(var key in jsonData) country_names.push(key);
+          console.log(country_names);
+          if(countryname in country_name_map){
+            // console.log('in the object list');
+            countryname = country_name_map[countryname];
+          }
+
+
           let last30Days = jsonData[countryname];
           // if country not found in history data
           // then hide the history container
