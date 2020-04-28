@@ -1,7 +1,7 @@
 let document_width = $("document").width();
 let window_width = $("#sub-container").width();
-console.log("width : "+window_width);
-console.log("width perc: "+parseInt((window_width*0.2)/3));
+// console.log("width : "+window_width);
+// console.log("width perc: "+parseInt((window_width*0.2)/3));
 
 var confirmed_layout = {
     title: 'Confirmed Cases',
@@ -90,9 +90,9 @@ var confirmed_layout = {
           Plotly.purge('daily_deaths_plot');
           if(jsonData){
           // finding odd countries with spaces
-          let country_names = []
-          for(var key in jsonData) country_names.push(key);
-          console.log(country_names);
+          // let country_names = []
+          // for(var key in jsonData) country_names.push(key);
+          // console.log(country_names);
           if(countryname in country_name_map){
             // console.log('in the object list');
             countryname = country_name_map[countryname];
