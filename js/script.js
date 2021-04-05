@@ -78,22 +78,23 @@ $(document).ready(function(){
 //init
 let jsonCurrentCountryData = null;
 let countryname = "bangladesh";
-fetch('https://ipapi.co/json/')
-.then(function(response) {
-response.json().then(jsonData => {
-    // console.log(jsonData);
-    countryname = jsonData.country_name;
-    if(countryname.split(" ").length > 1){
-    countryname = jsonData.country_code_iso3;
-    }
-    // let country_lang = jsonData.languages.split(',')[0];
-    // console.log(countryname.toLowerCase());
-    fetchCovidStats(countryname);
-});
-})
-.catch(function(error) {
-console.log(error)
-});
+// fetch('https://ipapi.co/json/')
+// .then(function(response) {
+// response.json().then(jsonData => {
+//     // console.log(jsonData);
+//     countryname = jsonData.country_name;
+//     if(countryname.split(" ").length > 1){
+//     countryname = jsonData.country_code_iso3;
+//     }
+//     // let country_lang = jsonData.languages.split(',')[0];
+//     // console.log(countryname.toLowerCase());
+//     fetchCovidStats(countryname);
+// });
+// })
+// .catch(function(error) {
+// console.log(error)
+// });
+fetchCovidStats(countryname);
 
 async function setCountries(){
     fetch('https://coronavirus-19-api.herokuapp.com/countries')
