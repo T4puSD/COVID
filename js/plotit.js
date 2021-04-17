@@ -113,7 +113,7 @@ var confirmed_layout = {
               $('#sub-container2').show();
             });
           }
-          console.log(last30Days.length);
+          // console.log(last30Days.length);
           // Object.assign(confirmed_layout.xaxis,{nticks:(last30Days.length)});
 
           let x_axis_dates = [];
